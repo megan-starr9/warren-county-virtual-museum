@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -11,11 +10,11 @@
 		#header { font-size: 1.4em; font-weight: bold; width: 420px; margin: 60px auto 0 auto; text-align: center; }
 		.error { color: #940D0A; font-weight: bold; }
 	</style>
-	<title>BitAuth: Login</title>
+	<title>Admin: Login</title>
 </head>
 <body>
 <?php
-	echo '<div id="header">BitAuth Example: Login</div>';
+	echo '<div id="header">Admin: Login</div>';
 
 	echo form_open(current_url());
 	echo form_label('Username','username');
@@ -28,8 +27,7 @@
 	echo form_close();
 
 	echo '<div id="bottom">';
-	echo '<span style="float: right;">'.anchor('example/register', 'Register').'</span>';
-	echo 'Username: <strong>admin</strong><br/>Password: <strong>admin</strong>';
+	echo '<span style="float: right;">'.anchor('admin/register', 'Register').'</span>';
 	echo '</div>';
 
 ?>

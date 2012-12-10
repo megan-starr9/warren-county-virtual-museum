@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Example extends CI_Controller
+class admin extends CI_Controller
 {
 
 	/**
-	 * Example::__construct()
+	 * admin::__construct()
 	 *
 	 */
 	public function __construct()
@@ -21,7 +21,7 @@ class Example extends CI_Controller
 	}
 
 	/**
-	 * Example::convert()
+	 * admin::convert()
 	 *
 	 */
 	public function convert()
@@ -47,7 +47,7 @@ class Example extends CI_Controller
 	}
 
 	/**
-	 * Example::login()
+	 * admin::login()
 	 *
 	 */
 	public function login()
@@ -71,7 +71,7 @@ class Example extends CI_Controller
 						$this->session->unset_userdata('redir');
 					}
 
-					redirect($redir ? $redir : 'example');
+					redirect($redir ? $redir : 'admin');
 				}
 				else
 				{
@@ -84,11 +84,11 @@ class Example extends CI_Controller
 			}
 		}
 
-		$this->load->view('example/login', $data);
+		$this->load->view('admin/login', $data);
 	}
 
 	/**
-	 * Example::index()
+	 * admin::index()
 	 *
 	 */
 	public function index()
@@ -96,14 +96,14 @@ class Example extends CI_Controller
 		if( ! $this->bitauth->logged_in())
 		{
 			$this->session->set_userdata('redir', current_url());
-			redirect('example/login');
+			redirect('admin/login');
 		}
 
-		$this->load->view('example/users', array('bitauth' => $this->bitauth, 'users' => $this->bitauth->get_users()));
+		$this->load->view('admin/users', array('bitauth' => $this->bitauth, 'users' => $this->bitauth->get_users()));
 	}
 
 	/**
-	* Example::register()
+	* admin::register()
 	*
 	*/
 	public function register()
@@ -120,16 +120,16 @@ class Example extends CI_Controller
 			{
 				unset($_POST['submit'], $_POST['password_conf']);
 				$this->bitauth->add_user($this->input->post());
-				redirect('example/login');
+				redirect('admin/login');
 			}
 
 		}
 
-		$this->load->view('example/add_user', array('title' => 'Register'));
+		$this->load->view('admin/add_user', array('title' => 'Register'));
 	}
 
 	/**
-	* Example::add_user()
+	* admin::add_user()
 	*
 	*/
 	public function add_user()
@@ -137,12 +137,12 @@ class Example extends CI_Controller
 		if( ! $this->bitauth->logged_in())
 		{
 			$this->session->set_userdata('redir', current_url());
-			redirect('example/login');
+			redirect('admin/login');
 		}
 
 		if ( ! $this->bitauth->has_role('admin'))
 		{
-			$this->load->view('example/no_access');
+			$this->load->view('admin/no_access');
 			return;
 		}
 
@@ -158,17 +158,17 @@ class Example extends CI_Controller
 			{
 				unset($_POST['submit'], $_POST['password_conf']);
 				$this->bitauth->add_user($this->input->post());
-				redirect('example');
+				redirect('admin');
 			}
 
 		}
 
-		$this->load->view('example/add_user', array('title' => 'Add User', 'bitauth' => $this->bitauth));
+		$this->load->view('admin/add_user', array('title' => 'Add User', 'bitauth' => $this->bitauth));
 	}
 
 
 	/**
-	* Example::edit_user()
+	* admin::edit_user()
 	*
 	*/
 	public function edit_user($user_id)
@@ -176,12 +176,12 @@ class Example extends CI_Controller
 		if( ! $this->bitauth->logged_in())
 		{
 			$this->session->set_userdata('redir', current_url());
-			redirect('example/login');
+			redirect('admin/login');
 		}
 
 		if ( ! $this->bitauth->has_role('admin'))
 		{
-			$this->load->view('example/no_access');
+			$this->load->view('admin/no_access');
 			return;
 		}
 
@@ -205,7 +205,7 @@ class Example extends CI_Controller
 			{
 				unset($_POST['submit'], $_POST['password_conf']);
 				$this->bitauth->update_user($user_id, $this->input->post());
-				redirect('example');
+				redirect('admin');
 			}
 
 		}
@@ -217,11 +217,11 @@ class Example extends CI_Controller
 		}
 
 
-		$this->load->view('example/edit_user', array('bitauth' => $this->bitauth, 'groups' => $groups, 'user' => $this->bitauth->get_user_by_id($user_id)));
+		$this->load->view('admin/edit_user', array('bitauth' => $this->bitauth, 'groups' => $groups, 'user' => $this->bitauth->get_user_by_id($user_id)));
 	}
 
 	/**
-	 * Example::groups()
+	 * admin::groups()
 	 *
 	 */
 	public function groups()
@@ -229,14 +229,14 @@ class Example extends CI_Controller
 		if( ! $this->bitauth->logged_in())
 		{
 			$this->session->set_userdata('redir', current_url());
-			redirect('example/login');
+			redirect('admin/login');
 		}
 
-		$this->load->view('example/groups', array('bitauth' => $this->bitauth, 'groups' => $this->bitauth->get_groups()));
+		$this->load->view('admin/groups', array('bitauth' => $this->bitauth, 'groups' => $this->bitauth->get_groups()));
 	}
 
 	/**
-	 * Example::add_group()
+	 * admin::add_group()
 	 *
 	 */
 	public function add_group()
@@ -244,12 +244,12 @@ class Example extends CI_Controller
 		if( ! $this->bitauth->logged_in())
 		{
 			$this->session->set_userdata('redir', current_url());
-			redirect('example/login');
+			redirect('admin/login');
 		}
 
 		if ( ! $this->bitauth->has_role('admin'))
 		{
-			$this->load->view('example/no_access');
+			$this->load->view('admin/no_access');
 			return;
 		}
 
@@ -264,7 +264,7 @@ class Example extends CI_Controller
 			{
 				unset($_POST['submit']);
 				$this->bitauth->add_group($this->input->post());
-				redirect('example/groups');
+				redirect('admin/groups');
 			}
 
 		}
@@ -275,11 +275,11 @@ class Example extends CI_Controller
 			$users[$_user->user_id] = $_user->fullname;
 		}
 
-		$this->load->view('example/add_group', array('bitauth' => $this->bitauth, 'roles' => $this->bitauth->get_roles(), 'users' => $users));
+		$this->load->view('admin/add_group', array('bitauth' => $this->bitauth, 'roles' => $this->bitauth->get_roles(), 'users' => $users));
 	}
 
 	/**
-	 * Example:edit_group()
+	 * admin:edit_group()
 	 *
 	 */
 	public function edit_group($group_id)
@@ -287,12 +287,12 @@ class Example extends CI_Controller
 		if( ! $this->bitauth->logged_in())
 		{
 			$this->session->set_userdata('redir', current_url());
-			redirect('example/login');
+			redirect('admin/login');
 		}
 
 		if ( ! $this->bitauth->has_role('admin'))
 		{
-			$this->load->view('example/no_access');
+			$this->load->view('admin/no_access');
 			return;
 		}
 
@@ -307,7 +307,7 @@ class Example extends CI_Controller
 			{
 				unset($_POST['submit']);
 				$this->bitauth->update_group($group_id, $this->input->post());
-				redirect('example/groups');
+				redirect('admin/groups');
 			}
 
 		}
@@ -330,32 +330,39 @@ class Example extends CI_Controller
 			}
 		}
 
-		$this->load->view('example/edit_group', array('bitauth' => $this->bitauth, 'roles' => $roles, 'group' => $group, 'group_roles' => $role_list, 'users' => $users));
+		$this->load->view('admin/edit_group', array('bitauth' => $this->bitauth, 'roles' => $roles, 'group' => $group, 'group_roles' => $role_list, 'users' => $users));
 	}
 
 	/**
-	 * Example::activate()
+	 * admin::activate()
 	 *
 	 */
 	 public function activate($activation_code)
 	 {
 	 	if($this->bitauth->activate($activation_code))
 	 	{
-	 		$this->load->view('example/activation_successful');
+	 		$this->load->view('admin/activation_successful');
 	 		return;
 	 	}
 
-	 	$this->load->view('example/activation_failed');
+	 	$this->load->view('admin/activation_failed');
 	 }
 
 	/**
-	 * Example::logout()
+	 * admin::logout()
 	 *
 	 */
 	public function logout()
 	{
 		$this->bitauth->logout();
-		redirect('example');
+		redirect('admin');
 	}
+        
+        public function delete_user($user_id)
+	 {
+	 	$this->bitauth->delete($user_id);
+
+	 	$this->load->view('example/users', array('bitauth' => $this->bitauth, 'users' => $this->bitauth->get_users()));
+	 }
 
 }

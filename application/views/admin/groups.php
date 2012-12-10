@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,19 +8,19 @@
 		#table td, #table th { border: 1px solid #666; border-left: 0; border-bottom: 0; padding: 4px; text-align: left; }
 		#table caption { font-size: 1.4em; font-weight: bold; }
 	</style>
-	<title>BitAuth: Groups</title>
+	<title>Admin: Groups</title>
 </head>
 <body>
 	<?php
 		echo '<table border="0" cellspacing="0" cellpadding="0" id="table">';
-		echo '<caption>BitAuth Example: Groups</caption>';
+		echo '<caption>admin: Groups</caption>';
 		echo '<tr><th width="1">ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>';
 		foreach($groups as $_group)
 		{
 			$actions = '';
 			if($bitauth->has_role('admin'))
 			{
-				$actions = anchor('example/edit_group/'.$_group->group_id, 'Edit Group');
+				$actions = anchor('admin/edit_group/'.$_group->group_id, 'Edit Group');
 			}
 
 			echo '<tr>'.
@@ -33,11 +32,11 @@
 		}
 		echo '</table>';
 		echo '<div id="bottom">';
-		echo anchor('example/logout', 'Logout', 'style="float: right;"');
-		echo anchor('example', 'View Users');
+		echo anchor('admin/logout', 'Logout', 'style="float: right;"');
+		echo anchor('admin', 'View Users');
 		if($bitauth->is_admin())
 		{
-			echo '<br/>'.anchor('example/add_group', 'Add Group');
+			echo '<br/>'.anchor('admin/add_group', 'Add Group');
 		}
 		echo '</div>';
 	?>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -13,14 +12,14 @@
 		.error { color: #940D0A; font-weight: bold; }
 	</style>
 
-	<title>BitAuth: Add Group</title>
+	<title>Admin: Add Group</title>
 </head>
 <body>
 	<?php
 		echo form_open(current_url());
 
 		echo '<table border="0" cellspacing="0" cellpadding="0" id="table">';
-		echo '<caption>BitAuth Example: Add Group</caption>';
+		echo '<caption>admin: Add Group</caption>';
 
 		echo '<tr><td class="label">Group Name</td><td>'.form_input('name', set_value('name')).'</td></tr>';
 		echo '<tr><td class="label">Description</td><td>'.form_textarea('description', set_value('description')).'</td></tr>';
@@ -38,11 +37,11 @@
 		echo '<div id="bottom">';
 		if(isset($bitauth) && $bitauth->logged_in())
 		{
-			echo anchor('example/logout', 'Logout', 'style="float: right;"');
+			echo anchor('admin/logout', 'Logout', 'style="float: right;"');
 		}
 		else
 		{
-			echo anchor('example/login', 'Login', 'style="float: right;"');
+			echo anchor('admin/login', 'Login', 'style="float: right;"');
 		}
 		echo '</div>';
 

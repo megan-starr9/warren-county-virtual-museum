@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -12,7 +11,7 @@
 		#table select, #table input[type=text], #table input[type=password], #table textarea { width: 270px; }
 		.error { color: #940D0A; font-weight: bold; }
 	</style>
-	<title>BitAuth: Edit Group</title>
+	<title>Admin: Edit Group</title>
 </head>
 <body>
 	<?php
@@ -21,7 +20,7 @@
 		echo form_open(current_url());
 
 		echo '<table border="0" cellspacing="0" cellpadding="0" id="table">';
-		echo '<caption>BitAuth Example: Edit Group</caption>';
+		echo '<caption>admin: Edit Group</caption>';
 
 		if( ! empty($group))
 		{
@@ -35,16 +34,16 @@
 				echo '<tr><td colspan="2">'.validation_errors().'</td></tr>';
 			}
 
-			echo '<tr><td class="label" colspan="2">'.anchor('example/groups', 'Cancel').' '.form_submit('submit','Update').'</td></tr>';
+			echo '<tr><td class="label" colspan="2">'.anchor('admin/groups', 'Cancel').' '.form_submit('submit','Update').'</td></tr>';
 		} else {
-			echo '<tr><td><p>Group Not Found</p><p>'.anchor('example/groups', 'Go Back').'</p></td></tr>';
+			echo '<tr><td><p>Group Not Found</p><p>'.anchor('admin/groups', 'Go Back').'</p></td></tr>';
 		}
 
 		echo '</table>';
 		echo form_close();
 
 		echo '<div id="bottom">';
-		echo anchor('example/logout', 'Logout', 'style="float: right;"');
+		echo anchor('admin/logout', 'Logout', 'style="float: right;"');
 		echo '</div>';
 
 	?>

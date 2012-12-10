@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,13 +8,13 @@
 		#table td, #table th { border: 1px solid #666; border-left: 0; border-bottom: 0; padding: 4px; text-align: left; vertical-align: top; }
 		#table caption { font-size: 1.4em; font-weight: bold; }
 	</style>
-	<title>BitAuth: Users</title>
+	<title>Admin: Users</title>
 </head>
 <body>
 	<?php
 
 		echo '<table border="0" cellspacing="0" cellpadding="0" id="table">';
-		echo '<caption>BitAuth Example: Users</caption>';
+		echo '<caption>Admin: Users</caption>';
 		echo '<tr><th width="1">ID</th><th>Username</th><th>Full Name</th><th>Actions</th></tr>';
 		if( ! empty($users))
 		{
@@ -24,10 +23,12 @@
 				$actions = '';
 				if($bitauth->has_role('admin'))
 				{
-					$actions = anchor('example/edit_user/'.$_user->user_id, 'Edit User');
+					$actions = anchor('admin/edit_user/'.$_user->user_id, 'Edit User');
+                                        $deleteText = "return confirm('Confirm user delete action: ".$_user->user_id."')";
+                                        $actions .= '&nbsp;|&nbsp;'.anchor('admin/delete_user/'.$_user->user_id,'Delete',array('class'=>'delete','onclick'=>$deleteText));
 					if( ! $_user->active)
 					{
-						$actions .= '<br/>'.anchor('example/activate/'.$_user->activation_code, 'Activate User');
+						$actions .= '<br/>'.anchor('admin/activate/'.$_user->activation_code, 'Activate User');
 					}
 
 				}
@@ -43,11 +44,11 @@
 		echo '</table>';
 
 		echo '<div id="bottom">';
-		echo anchor('example/logout', 'Logout', 'style="float: right;"');
-		echo anchor('example/groups', 'View Groups');
+		echo anchor('admin/logout', 'Logout', 'style="float: right;"');
+		echo anchor('admin/groups', 'View Groups');
 		if($bitauth->is_admin())
 		{
-			echo '<br/>'.anchor('example/add_user', 'Add User');
+			echo '<br/>'.anchor('admin/add_user', 'Add User');
 		}
 		echo '</div>';
 
