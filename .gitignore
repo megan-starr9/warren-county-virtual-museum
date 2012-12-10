@@ -36,3 +36,6 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+/nbproject/
+/nbproject/private/
+test_export.xls
