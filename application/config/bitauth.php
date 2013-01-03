@@ -37,7 +37,7 @@ $config['remember_token_updates'] = TRUE;
  * Number of days before passwords expire. To disable, set to FALSE
  * Default: 90
  */
-$config['pwd_max_age'] = 90;
+$config['pwd_max_age'] = FALSE;
 
 /**
  * Number of days before password expiration to notify users their
@@ -165,6 +165,8 @@ $config['roles'] = array(
  * ANY USERS IN GROUPS GIVEN THIS ROLE WILL HAVE FULL ACCESS
  */
 	'admin'			=> 'User is an Administrator',
+        'can_edit_all'          => 'Can edit all museum content',
+        'can_edit_tags'         => 'Can edit museum tags',
 /**
  * Add as many roles here as you like.
  * Follow the format:

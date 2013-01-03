@@ -364,5 +364,19 @@ class admin extends CI_Controller
 
 	 	$this->load->view('example/users', array('bitauth' => $this->bitauth, 'users' => $this->bitauth->get_users()));
 	 }
+         
+         
+         
+         
+        public function test_new_group()
+        {
+            $group = array(
+                'name' => 'Dev',
+                'description' => 'Application Developers',
+                'roles' => array('can_edit_all')
+            );
+
+            $this->bitauth->add_group($group);
+        }
 
 }
