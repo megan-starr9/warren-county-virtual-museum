@@ -19,7 +19,7 @@ class Curate extends CI_Controller {
        
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         
-        //$this->load->config('vm__config');
+        //$this->load->config('vm');
         
         //dev profiler
         //$this->output->enable_profiler(true);
