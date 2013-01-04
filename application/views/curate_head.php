@@ -46,7 +46,7 @@
                 echo '<ul class="nav nav-list">';
                 echo '<li class="nav-header">Curator Tools</li>';
                 echo '<li><a href="'.base_url().'curate/tag_list">Manage Tags</a></li>';
-                echo '<li><a href="#">Manage Artifacts</a></li>';
+                echo '<li><a href="'.base_url().'curate/artifact_list">Manage Artifacts</a></li>';
                 echo '</ul>';
                 echo '</div>';
             }

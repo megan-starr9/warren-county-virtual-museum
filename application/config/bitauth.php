@@ -167,6 +167,8 @@ $config['roles'] = array(
 	'admin'			=> 'User is an Administrator',
         'can_edit_all'          => 'Can edit all museum content',
         'can_edit_tags'         => 'Can edit museum tags',
+        'can_edit_artifacts'    => 'Can edit museum artifact',
+        'can_edit_media'        => 'Can edit museum media objects',
 /**
  * Add as many roles here as you like.
  * Follow the format:

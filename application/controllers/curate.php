@@ -16,10 +16,11 @@ class Curate extends CI_Controller {
         $this->load->helper('url');    
         
         $this->load->model('m_vm_tags'); 
+        $this->load->model('m_vm_artifacts'); 
        
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         
-        //$this->load->config('vm');
+        $this->load->config('vm');
         
         //dev profiler
         //$this->output->enable_profiler(true);
@@ -158,15 +159,40 @@ class Curate extends CI_Controller {
         }
     }
     
+    public function artifact_list()
+    {
+        if( ! $this->bitauth->logged_in())
+        {
+            redirect('curate/login');
+        } else {
+            $data = array();
+            $data['page'] = 'artifact list';
+            $data['artifacts'] = $this->m_vm_artifacts->get_artifacts();
+            $this->load->view('curate_head',$data);
+            $this->load->view('curate_artifact_list', $data);
+            $this->load->view('curate_foot');
+        }
+    }
+    
     
     public function test_new_user()
     {
         $user = array(
-            'username'      => 'paulcs',
-            'fullname'      => 'Paul Schuytema',
-            'password'      => 'paulcs',
+            'username'      => 'sampledev',
+            'fullname'      => 'Sample Developer',
+            'password'      => 'sampledev',
             'email'         => 'paul.schuytema@cityofmonmouth.com',  
             'groups'        =>  array(3),
+        );
+
+        $this->bitauth->add_user($user);
+        
+        $user = array(
+            'username'      => 'sampleuser',
+            'fullname'      => 'Sample User',
+            'password'      => 'sampleuser',
+            'email'         => 'paul.schuytema@cityofmonmouth.com',  
+            'groups'        =>  array(2),
         );
 
         $this->bitauth->add_user($user);
@@ -177,7 +203,7 @@ class Curate extends CI_Controller {
     {
         $group = $this->bitauth->get_group_by_name('Dev');
 
-        $group->roles = array('can_edit_tags');
+        $group->roles = array('can_edit_tags', 'can_edit_artifacts', 'can_edit_media');
         $this->bitauth->update_group($group->group_id, $group);
     }
     

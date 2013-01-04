@@ -28,6 +28,18 @@
                                 echo 'Can Edit Muesum Tags'; 
                                 echo '</dd>';
                             }
+                            if($this->bitauth->has_role('can_edit_artifacts'))
+                            {
+                                echo '<dd>';
+                                echo 'Can Edit Muesum Artifacts'; 
+                                echo '</dd>';
+                            }
+                            if($this->bitauth->has_role('can_edit_media'))
+                            {
+                                echo '<dd>';
+                                echo 'Can Edit Muesum Media Objects'; 
+                                echo '</dd>';
+                            }
                         ?>
                 </dl>
                 <br>
