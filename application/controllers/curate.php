@@ -174,6 +174,45 @@ class Curate extends CI_Controller {
         }
     }
     
+    public function update_artifact($artifact_id = NULL)
+    {
+        if( ! $this->bitauth->logged_in())
+        {
+            redirect('curate/login');
+        } else {
+            $data = array();
+            if($this->input->post())
+            {
+                $this->form_validation->set_rules('Title', 'Artifact Title', 'trim|required');
+
+                if($this->form_validation->run() == TRUE)
+                {
+                    
+                    if(isset($artifact_id))
+                    {             
+                        $this->m_vm_artifacts->new_artifact($artifact_id); 
+                        redirect('curate/artifact_list');
+                    } else {                 
+                        $this->m_vm_artifacts->new_artifact(); 
+                        redirect('curate/artifact_list');
+                    }
+                }
+
+            }
+            $data['page'] = 'edit_project';
+            if(isset($artifact_id))
+            {
+                $data['page'] = 'Edit an Artifact';
+                $data['artifact_info'] = $this->m_vm_artifacts->get_artifact($artifact_id);
+            } else {
+                $data['page'] = 'Create a New Artifact';
+            }
+            $this->load->view('curate_head',$data);
+            $this->load->view('curate_artifact_update', $data);
+            $this->load->view('curate_foot');
+        }
+    }
+    
     
     public function test_new_user()
     {

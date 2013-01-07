@@ -4,7 +4,7 @@
                 <?php
                 if($this->bitauth->has_role('can_edit_artifacts'))
                 {
-                    echo '<a class="btn btn-mini" href="#ModalArtifact" data-toggle="modal"><i class="icon-plus-sign"></i> Add New Artifact</a>';
+                    echo '<a class="btn btn-mini" href="'.base_url().'curate/update_artifact"><i class="icon-plus-sign"></i> Add New Artifact</a>';
                 }
                 ?>
                 <br><br>

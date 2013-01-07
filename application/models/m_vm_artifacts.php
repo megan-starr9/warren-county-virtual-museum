@@ -20,7 +20,8 @@ class m_vm_artifacts extends CI_Model{
     {
         //not done!!!
         $data = array(
-            'Title' => strtolower($this->pcs_utility->db_clean(strip_tags($this->input->post('Title')),100))
+            'Title' => $this->pcs_utility->db_clean(strip_tags($this->input->post('Title')),100),
+            'Org' => $this->pcs_utility->db_clean(strip_tags($this->input->post('Org')),100)
         );
         $this->db->set($data);
         if (isset($artifact_id))
